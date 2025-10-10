@@ -10,7 +10,7 @@ public struct PhomemoImage {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
               let img = CGImageSourceCreateImageAtIndex(src, 0, nil)
         else { return nil }
-        self.cgImage = img
+        self.cgImage = try! img.normalized()
         self.width = width
     }
 
@@ -121,6 +121,28 @@ public struct PhomemoImage {
 }
 
 private extension CGImage {
+    func normalized() throws -> CGImage {
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bytesPerRow = width * 4
+        let bitmapInfo = CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
+
+        guard let ctx = CGContext(
+            data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: bytesPerRow,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo
+        ) else {
+            throw NSError(domain: "ImageError", code: 2)
+        }
+
+        ctx.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+        guard let normalized = ctx.makeImage() else { throw NSError(domain: "ImageError", code: 3) }
+        return normalized
+    }
+    
     func resized(to target: CGSize) -> CGImage? {
         guard let colorSpace = colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB) else { return nil }
         guard let ctx = CGContext(data: nil,
