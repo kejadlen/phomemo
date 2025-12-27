@@ -50,7 +50,7 @@
 		DE5328EE2F009E8C00E97BA2 /* Exceptions for "Phomemo" folder in "PhomemoShare" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				phomemo_image.swift,
+				PhomemoImage.swift,
 				PhomemoWriter.swift,
 			);
 			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
