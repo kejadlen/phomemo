@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		DE5328E42F009DD500E97BA2 /* PhomemoShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DE5329942F00A38900E97BA2 /* PrinterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */; };
+		DE5329952F00A38900E97BA2 /* PhomemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329862F00A38900E97BA2 /* PhomemoApp.swift */; };
+		DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329852F00A38900E97BA2 /* ContentView.swift */; };
+		DE5329982F00A38900E97BA2 /* PhomemoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */; };
+		DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
+		DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298F2F00A38900E97BA2 /* ShareViewController.swift */; };
+		DE53299C2F00A39B00E97BA2 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329922F00A38900E97BA2 /* ShareViewModel.swift */; };
+		DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
+		DE53299E2F00A3A200E97BA2 /* PhomemoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,44 +46,18 @@
 /* Begin PBXFileReference section */
 		549035752E90B74100F904F8 /* Phomemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phomemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhomemoShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE5329852F00A38900E97BA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DE5329862F00A38900E97BA2 /* PhomemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoApp.swift; sourceTree = "<group>"; };
+		DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterViewModel.swift; sourceTree = "<group>"; };
+		DE5329892F00A38900E97BA2 /* PhomemoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoImage.swift; sourceTree = "<group>"; };
+		DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoWriter.swift; sourceTree = "<group>"; };
+		DE53298C2F00A38900E97BA2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		DE53298D2F00A38900E97BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhomemoShare.entitlements; sourceTree = "<group>"; };
+		DE53298F2F00A38900E97BA2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		DE5329902F00A38900E97BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShareViewController.xib; sourceTree = "<group>"; };
+		DE5329922F00A38900E97BA2 /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		DE5328E82F009DD500E97BA2 /* Exceptions for "PhomemoShare" folder in "PhomemoShare" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
-		};
-		DE5328EE2F009E8C00E97BA2 /* Exceptions for "Phomemo" folder in "PhomemoShare" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				PhomemoImage.swift,
-				PhomemoWriter.swift,
-			);
-			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		549035772E90B74100F904F8 /* Phomemo */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				DE5328EE2F009E8C00E97BA2 /* Exceptions for "Phomemo" folder in "PhomemoShare" target */,
-			);
-			path = Phomemo;
-			sourceTree = "<group>";
-		};
-		DE5328D92F009DD500E97BA2 /* PhomemoShare */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				DE5328E82F009DD500E97BA2 /* Exceptions for "PhomemoShare" folder in "PhomemoShare" target */,
-			);
-			path = PhomemoShare;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		549035722E90B74100F904F8 /* Frameworks */ = {
@@ -97,8 +80,9 @@
 		5490356C2E90B74100F904F8 = {
 			isa = PBXGroup;
 			children = (
-				549035772E90B74100F904F8 /* Phomemo */,
-				DE5328D92F009DD500E97BA2 /* PhomemoShare */,
+				DE5329882F00A38900E97BA2 /* App */,
+				DE53298B2F00A38900E97BA2 /* Lib */,
+				DE5329932F00A38900E97BA2 /* Share */,
 				549035762E90B74100F904F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +94,38 @@
 				DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DE5329882F00A38900E97BA2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DE5329852F00A38900E97BA2 /* ContentView.swift */,
+				DE5329862F00A38900E97BA2 /* PhomemoApp.swift */,
+				DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DE53298B2F00A38900E97BA2 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				DE5329892F00A38900E97BA2 /* PhomemoImage.swift */,
+				DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		DE5329932F00A38900E97BA2 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				DE53298C2F00A38900E97BA2 /* icon.icns */,
+				DE53298D2F00A38900E97BA2 /* Info.plist */,
+				DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */,
+				DE53298F2F00A38900E97BA2 /* ShareViewController.swift */,
+				DE5329912F00A38900E97BA2 /* ShareViewController.xib */,
+				DE5329922F00A38900E97BA2 /* ShareViewModel.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,9 +143,6 @@
 			);
 			dependencies = (
 				DE5328E32F009DD500E97BA2 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				549035772E90B74100F904F8 /* Phomemo */,
 			);
 			name = Phomemo;
 			packageProductDependencies = (
@@ -149,9 +162,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				DE5328D92F009DD500E97BA2 /* PhomemoShare */,
 			);
 			name = PhomemoShare;
 			packageProductDependencies = (
@@ -213,6 +223,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE5329942F00A38900E97BA2 /* PrinterViewModel.swift in Sources */,
+				DE5329952F00A38900E97BA2 /* PhomemoApp.swift in Sources */,
+				DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */,
+				DE5329982F00A38900E97BA2 /* PhomemoWriter.swift in Sources */,
+				DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +235,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE53299E2F00A3A200E97BA2 /* PhomemoWriter.swift in Sources */,
+				DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */,
+				DE53299C2F00A39B00E97BA2 /* ShareViewModel.swift in Sources */,
+				DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +251,17 @@
 			targetProxy = DE5328E22F009DD500E97BA2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DE5329912F00A38900E97BA2 /* ShareViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE5329902F00A38900E97BA2 /* Base */,
+			);
+			name = ShareViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5490357A2E90B74100F904F8 /* Debug */ = {
@@ -417,7 +447,7 @@
 		DE5328E62F009DD500E97BA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = PhomemoShare/PhomemoShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Share/PhomemoShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -428,7 +458,7 @@
 				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhomemoShare/Info.plist;
+				INFOPLIST_FILE = Share/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Phomemo;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -452,7 +482,7 @@
 		DE5328E72F009DD500E97BA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = PhomemoShare/PhomemoShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Share/PhomemoShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -463,7 +493,7 @@
 				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhomemoShare/Info.plist;
+				INFOPLIST_FILE = Share/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Phomemo;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
