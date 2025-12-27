@@ -6,20 +6,85 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DE5328E42F009DD500E97BA2 /* PhomemoShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DE5328E22F009DD500E97BA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5490356D2E90B74100F904F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DE5328D72F009DD500E97BA2;
+			remoteInfo = PhomemoShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DE5328E52F009DD500E97BA2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DE5328E42F009DD500E97BA2 /* PhomemoShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		549035752E90B74100F904F8 /* Phomemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phomemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhomemoShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DE5328E82F009DD500E97BA2 /* Exceptions for "PhomemoShare" folder in "PhomemoShare" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
+		};
+		DE5328EE2F009E8C00E97BA2 /* Exceptions for "Phomemo" folder in "PhomemoShare" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				phomemo_image.swift,
+				PhomemoWriter.swift,
+			);
+			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		549035772E90B74100F904F8 /* Phomemo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DE5328EE2F009E8C00E97BA2 /* Exceptions for "Phomemo" folder in "PhomemoShare" target */,
+			);
 			path = Phomemo;
+			sourceTree = "<group>";
+		};
+		DE5328D92F009DD500E97BA2 /* PhomemoShare */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DE5328E82F009DD500E97BA2 /* Exceptions for "PhomemoShare" folder in "PhomemoShare" target */,
+			);
+			path = PhomemoShare;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		549035722E90B74100F904F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE5328D52F009DD500E97BA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				549035772E90B74100F904F8 /* Phomemo */,
+				DE5328D92F009DD500E97BA2 /* PhomemoShare */,
 				549035762E90B74100F904F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				549035752E90B74100F904F8 /* Phomemo.app */,
+				DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,10 +121,12 @@
 			buildPhases = (
 				549035712E90B74100F904F8 /* Sources */,
 				549035722E90B74100F904F8 /* Frameworks */,
+				DE5328E52F009DD500E97BA2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DE5328E32F009DD500E97BA2 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				549035772E90B74100F904F8 /* Phomemo */,
@@ -69,6 +138,28 @@
 			productReference = 549035752E90B74100F904F8 /* Phomemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DE5328D72F009DD500E97BA2 /* PhomemoShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE5328E92F009DD500E97BA2 /* Build configuration list for PBXNativeTarget "PhomemoShare" */;
+			buildPhases = (
+				DE5328D42F009DD500E97BA2 /* Sources */,
+				DE5328D52F009DD500E97BA2 /* Frameworks */,
+				DE5328D62F009DD500E97BA2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DE5328D92F009DD500E97BA2 /* PhomemoShare */,
+			);
+			name = PhomemoShare;
+			packageProductDependencies = (
+			);
+			productName = PhomemoShare;
+			productReference = DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -76,11 +167,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2600;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					549035742E90B74100F904F8 = {
 						CreatedOnToolsVersion = 26.0.1;
+					};
+					DE5328D72F009DD500E97BA2 = {
+						CreatedOnToolsVersion = 26.1.1;
 					};
 				};
 			};
@@ -99,9 +193,20 @@
 			projectRoot = "";
 			targets = (
 				549035742E90B74100F904F8 /* Phomemo */,
+				DE5328D72F009DD500E97BA2 /* PhomemoShare */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE5328D62F009DD500E97BA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		549035712E90B74100F904F8 /* Sources */ = {
@@ -111,7 +216,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE5328D42F009DD500E97BA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE5328E32F009DD500E97BA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
+			targetProxy = DE5328E22F009DD500E97BA2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5490357A2E90B74100F904F8 /* Debug */ = {
@@ -284,6 +404,72 @@
 			};
 			name = Release;
 		};
+		DE5328E62F009DD500E97BA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PhomemoShare/PhomemoShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H873NLKBJ4;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhomemoShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Phomemo;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phomemo.Phomemo.PhomemoShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DE5328E72F009DD500E97BA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PhomemoShare/PhomemoShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H873NLKBJ4;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhomemoShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Phomemo;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phomemo.Phomemo.PhomemoShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -301,6 +487,15 @@
 			buildConfigurations = (
 				5490357D2E90B74100F904F8 /* Debug */,
 				5490357E2E90B74100F904F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE5328E92F009DD500E97BA2 /* Build configuration list for PBXNativeTarget "PhomemoShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE5328E62F009DD500E97BA2 /* Debug */,
+				DE5328E72F009DD500E97BA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
