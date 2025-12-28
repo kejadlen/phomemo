@@ -3,7 +3,7 @@ import CoreGraphics
 import UniformTypeIdentifiers
 
 @Observable
-final class PrinterViewModel: PhomemoWriterDelegate {
+final class PhomemoViewModel: PhomemoWriterDelegate {
     // Connection state
     var connectionState: ConnectionState = .disconnected
 

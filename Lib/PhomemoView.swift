@@ -120,35 +120,30 @@ struct DropZone: View {
     }
 }
 
-// MARK: - Printer View
+// MARK: - Phomemo View
 
-struct PrinterView<DropContent: View>: View {
-    let previewImage: CGImage?
-    let canPrint: Bool
-    let isConnecting: Bool
-    let onPrint: () -> Void
+struct PhomemoView<DropContent: View>: View {
+    @Bindable var viewModel: PhomemoViewModel
     let onClear: () -> Void
     let dropContent: () -> DropContent
 
     init(
-        previewImage: CGImage?,
-        canPrint: Bool,
-        isConnecting: Bool = false,
-        onPrint: @escaping () -> Void,
+        viewModel: PhomemoViewModel,
         onClear: @escaping () -> Void,
         @ViewBuilder dropContent: @escaping () -> DropContent
     ) {
-        self.previewImage = previewImage
-        self.canPrint = canPrint
-        self.isConnecting = isConnecting
-        self.onPrint = onPrint
+        self.viewModel = viewModel
         self.onClear = onClear
         self.dropContent = dropContent
     }
 
+    private var isConnecting: Bool {
+        viewModel.connectionState != .connected || !viewModel.isReady
+    }
+
     var body: some View {
         Group {
-            if let preview = previewImage {
+            if let preview = viewModel.previewImage {
                 Image(decorative: preview, scale: 1.0)
                     .resizable()
             } else {
@@ -159,7 +154,7 @@ struct PrinterView<DropContent: View>: View {
         .ignoresSafeArea()
         .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
         .toolbar {
-            if previewImage != nil {
+            if viewModel.previewImage != nil {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: onClear) {
                         Image(systemName: "xmark")
@@ -171,11 +166,11 @@ struct PrinterView<DropContent: View>: View {
                         ProgressView()
                             .controlSize(.small)
                     } else {
-                        Button(action: onPrint) {
+                        Button(action: viewModel.printImage) {
                             Image(systemName: "printer")
                         }
                         .buttonStyle(.borderedProminent)
-                        .disabled(!canPrint)
+                        .disabled(!viewModel.canPrint)
                     }
                 }
             }

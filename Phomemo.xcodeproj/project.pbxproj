@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		DE5328E42F009DD500E97BA2 /* PhomemoShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DE5329942F00A38900E97BA2 /* PrinterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */; };
+		DE5329942F00A38900E97BA2 /* PhomemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */; };
 		DE5329952F00A38900E97BA2 /* PhomemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329862F00A38900E97BA2 /* PhomemoApp.swift */; };
 		DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329852F00A38900E97BA2 /* ContentView.swift */; };
 		DE5329982F00A38900E97BA2 /* PhomemoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */; };
 		DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
 		DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298F2F00A38900E97BA2 /* ShareViewController.swift */; };
-		DE53299C2F00A39B00E97BA2 /* PrinterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */; };
+		DE53299C2F00A39B00E97BA2 /* PhomemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */; };
 		DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
 		DE53299E2F00A3A200E97BA2 /* PhomemoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */; };
-		DE5329A02F00A3B000E97BA2 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* SharedViews.swift */; };
-		DE5329A12F00A3B000E97BA2 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* SharedViews.swift */; };
+		DE5329A02F00A3B000E97BA2 /* PhomemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */; };
+		DE5329A12F00A3B000E97BA2 /* PhomemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhomemoShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5329852F00A38900E97BA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE5329862F00A38900E97BA2 /* PhomemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoApp.swift; sourceTree = "<group>"; };
-		DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterViewModel.swift; sourceTree = "<group>"; };
+		DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoViewModel.swift; sourceTree = "<group>"; };
 		DE5329892F00A38900E97BA2 /* PhomemoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoImage.swift; sourceTree = "<group>"; };
 		DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoWriter.swift; sourceTree = "<group>"; };
 		DE53298C2F00A38900E97BA2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhomemoShare.entitlements; sourceTree = "<group>"; };
 		DE53298F2F00A38900E97BA2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		DE5329902F00A38900E97BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShareViewController.xib; sourceTree = "<group>"; };
-		DE53299F2F00A3B000E97BA2 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +112,8 @@
 			children = (
 				DE5329892F00A38900E97BA2 /* PhomemoImage.swift */,
 				DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */,
-				DE5329872F00A38900E97BA2 /* PrinterViewModel.swift */,
-				DE53299F2F00A3B000E97BA2 /* SharedViews.swift */,
+				DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */,
+				DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -225,12 +225,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE5329942F00A38900E97BA2 /* PrinterViewModel.swift in Sources */,
+				DE5329942F00A38900E97BA2 /* PhomemoViewModel.swift in Sources */,
 				DE5329952F00A38900E97BA2 /* PhomemoApp.swift in Sources */,
 				DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */,
 				DE5329982F00A38900E97BA2 /* PhomemoWriter.swift in Sources */,
 				DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */,
-				DE5329A02F00A3B000E97BA2 /* SharedViews.swift in Sources */,
+				DE5329A02F00A3B000E97BA2 /* PhomemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,9 +240,9 @@
 			files = (
 				DE53299E2F00A3A200E97BA2 /* PhomemoWriter.swift in Sources */,
 				DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */,
-				DE53299C2F00A39B00E97BA2 /* ShareViewModel.swift in Sources */,
+				DE53299C2F00A39B00E97BA2 /* PhomemoViewModel.swift in Sources */,
 				DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */,
-				DE5329A12F00A3B000E97BA2 /* SharedViews.swift in Sources */,
+				DE5329A12F00A3B000E97BA2 /* PhomemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

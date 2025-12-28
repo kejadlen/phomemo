@@ -2,7 +2,7 @@ import SwiftUI
 import AppKit
 
 class ShareViewController: NSViewController {
-    private var viewModel = PrinterViewModel()
+    private var viewModel = PhomemoViewModel()
 
     override var nibName: NSNib.Name? {
         nil
@@ -65,22 +65,12 @@ class ShareViewController: NSViewController {
 // MARK: - SwiftUI View
 
 struct ShareView: View {
-    @Bindable var viewModel: PrinterViewModel
+    @Bindable var viewModel: PhomemoViewModel
     let onCancel: () -> Void
     let onComplete: () -> Void
 
-    private var isConnecting: Bool {
-        viewModel.connectionState != .connected || !viewModel.isReady
-    }
-
     var body: some View {
-        PrinterView(
-            previewImage: viewModel.previewImage,
-            canPrint: viewModel.canPrint,
-            isConnecting: isConnecting,
-            onPrint: viewModel.printImage,
-            onClear: onCancel
-        ) {
+        PhomemoView(viewModel: viewModel, onClear: onCancel) {
             ImagePreviewPlaceholder()
         }
         .frame(width: 400, height: 400)
