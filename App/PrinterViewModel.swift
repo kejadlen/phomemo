@@ -11,6 +11,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     var coverClosed: Bool = true
     var temperatureOK: Bool = true
     var isReady: Bool = false
+    var isPrinting: Bool = false
 
     // Image state
     var originalImage: CGImage?
@@ -23,11 +24,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     private var writer: PhomemoWriter?
 
     var canPrint: Bool {
-        connectionState == .connected && isReady && originalImage != nil
-    }
-
-    var canLoadImage: Bool {
-        connectionState == .connected && isReady
+        connectionState == .connected && isReady && originalImage != nil && !isPrinting
     }
 
     init() {
@@ -53,6 +50,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
 
     func printImage() {
         guard let url = imageURL, canPrint else { return }
+        isPrinting = true
         writer?.printImage(from: url)
         statusMessage = "Printing..."
     }
@@ -100,10 +98,12 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     }
 
     func writerDidCompletePrint(_ writer: PhomemoWriter) {
+        isPrinting = false
         statusMessage = "Print complete!"
     }
 
     func writer(_ writer: PhomemoWriter, didFailWithError error: String) {
+        isPrinting = false
         statusMessage = error
         if connectionState == .scanning || connectionState == .connecting {
             connectionState = .disconnected

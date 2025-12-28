@@ -9,5 +9,6 @@ struct PhomemoApp: App {
             ContentView(viewModel: viewModel)
         }
         .windowResizability(.contentSize)
+        .windowToolbarStyle(.unifiedCompact)
     }
 }

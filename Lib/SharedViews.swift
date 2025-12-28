@@ -52,57 +52,6 @@ struct ImagePreviewPlaceholder: View {
     }
 }
 
-// MARK: - Print Button
-
-struct PrintButton: View {
-    let action: () -> Void
-    var disabled: Bool = false
-    var fullWidth: Bool = false
-
-    var body: some View {
-        Button(action: action) {
-            if fullWidth {
-                Label("Print", systemImage: "printer")
-                    .frame(maxWidth: .infinity)
-            } else {
-                Label("Print", systemImage: "printer")
-            }
-        }
-        .buttonStyle(.borderedProminent)
-        .disabled(disabled)
-    }
-}
-
-// MARK: - Status Icon
-
-enum StatusIconState {
-    case loading
-    case ready
-    case error
-}
-
-struct StatusIcon: View {
-    let state: StatusIconState
-    var scale: CGFloat = 1.0
-
-    var body: some View {
-        Group {
-            switch state {
-            case .loading:
-                ProgressView()
-                    .scaleEffect(scale)
-            case .ready:
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundStyle(.green)
-            case .error:
-                Image(systemName: "exclamationmark.circle.fill")
-                    .foregroundStyle(.red)
-            }
-        }
-        .frame(width: 16, height: 16)
-    }
-}
-
 // MARK: - Drop Zone
 
 struct DropZone: View {
@@ -111,22 +60,22 @@ struct DropZone: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [8]))
-                .foregroundStyle(.secondary.opacity(0.5))
+            Color.clear
 
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 Image(systemName: "photo.on.rectangle.angled")
-                    .font(.system(size: 40))
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 48, weight: .light))
+                    .foregroundStyle(.tertiary)
                 Text("Drop image here")
-                    .font(.headline)
+                    .font(.title3)
                     .foregroundStyle(.secondary)
                 Button("Open Image...", action: openFilePicker)
+                    .buttonStyle(.bordered)
                     .disabled(isDisabled)
             }
         }
-        .frame(height: 200)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
         .onDrop(of: [.image, .fileURL], isTargeted: nil, perform: handleDrop)
     }
 
@@ -171,85 +120,65 @@ struct DropZone: View {
     }
 }
 
-// MARK: - Status Row
-
-struct StatusRow: View {
-    let iconState: StatusIconState
-    let message: String
-
-    var body: some View {
-        HStack(spacing: 8) {
-            StatusIcon(state: iconState, scale: 0.8)
-            Text(message)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-    }
-}
-
 // MARK: - Printer View
 
-struct PrinterView<LeadingButton: View, DropContent: View>: View {
+struct PrinterView<DropContent: View>: View {
     let previewImage: CGImage?
-    let originalImage: CGImage?
-    let statusIconState: StatusIconState
-    let statusMessage: String
     let canPrint: Bool
+    let isConnecting: Bool
     let onPrint: () -> Void
-    let leadingButton: () -> LeadingButton
+    let onClear: () -> Void
     let dropContent: () -> DropContent
 
     init(
         previewImage: CGImage?,
-        originalImage: CGImage? = nil,
-        statusIconState: StatusIconState,
-        statusMessage: String,
         canPrint: Bool,
+        isConnecting: Bool = false,
         onPrint: @escaping () -> Void,
-        @ViewBuilder leadingButton: @escaping () -> LeadingButton = { EmptyView() },
-        @ViewBuilder dropContent: @escaping () -> DropContent = { EmptyView() }
+        onClear: @escaping () -> Void,
+        @ViewBuilder dropContent: @escaping () -> DropContent
     ) {
         self.previewImage = previewImage
-        self.originalImage = originalImage
-        self.statusIconState = statusIconState
-        self.statusMessage = statusMessage
         self.canPrint = canPrint
+        self.isConnecting = isConnecting
         self.onPrint = onPrint
-        self.leadingButton = leadingButton
+        self.onClear = onClear
         self.dropContent = dropContent
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack {
-                leadingButton()
-                Spacer()
-                StatusRow(iconState: statusIconState, message: statusMessage)
+        Group {
+            if let preview = previewImage {
+                Image(decorative: preview, scale: 1.0)
+                    .resizable()
+            } else {
+                dropContent()
             }
-            .padding()
-
-            Divider()
-
-            // Content
-            VStack(spacing: 20) {
-                if let preview = previewImage {
-                    if let original = originalImage {
-                        HStack(spacing: 20) {
-                            ImagePreview(image: original, caption: "Original")
-                            ImagePreview(image: preview, caption: "Print Preview")
-                        }
-                    } else {
-                        ImagePreview(image: preview, maxHeight: 250)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
+        .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
+        .toolbar {
+            if previewImage != nil {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: onClear) {
+                        Image(systemName: "xmark")
                     }
-                } else {
-                    dropContent()
                 }
 
-                PrintButton(action: onPrint, disabled: !canPrint, fullWidth: true)
-                    .controlSize(.large)
+                ToolbarItem(placement: .primaryAction) {
+                    if isConnecting {
+                        ProgressView()
+                            .controlSize(.small)
+                    } else {
+                        Button(action: onPrint) {
+                            Image(systemName: "printer")
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!canPrint)
+                    }
+                }
             }
-            .padding()
         }
     }
 }

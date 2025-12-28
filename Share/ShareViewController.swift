@@ -69,31 +69,16 @@ struct ShareView: View {
     let onCancel: () -> Void
     let onComplete: () -> Void
 
-    private var statusIconState: StatusIconState {
-        switch viewModel.state {
-        case .loading, .printing, .completed:
-            return .loading
-        case .ready:
-            return .ready
-        case .error:
-            return .error
-        }
-    }
-
     var body: some View {
         PrinterView(
             previewImage: viewModel.previewImage,
-            statusIconState: statusIconState,
-            statusMessage: viewModel.statusMessage,
             canPrint: viewModel.canPrint,
-            onPrint: viewModel.printImage
+            onPrint: viewModel.printImage,
+            onClear: onCancel
         ) {
-            Button("Cancel", action: onCancel)
-                .buttonStyle(.plain)
-        } dropContent: {
             ImagePreviewPlaceholder()
         }
-        .frame(width: 400)
+        .frame(width: 400, height: 400)
         .onChange(of: viewModel.state) { _, newState in
             if newState == .completed {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
