@@ -162,37 +162,37 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         guard bytes.count > 2 else { return }
 
         switch (bytes[1], bytes[2]) {
-        case (3, 169): // Too hot
+        case (0x03, 0xa9): // Too hot
             print("Too hot")
             ready = false
             delegate?.writer(self, didUpdateTemperatureStatus: false)
 
-        case (3, 168): // Temperature normal
+        case (0x03, 0xa8): // Temperature normal
             print("Temperature normal")
             delegate?.writer(self, didUpdateTemperatureStatus: true)
 
-        case (5, 153): // Cover open
+        case (0x05, 0x99): // Cover open
             print("Cover open")
             ready = false
             delegate?.writer(self, didUpdateCoverStatus: false)
 
-        case (5, 152): // Cover closed
+        case (0x05, 0x98): // Cover closed
             print("Cover closed")
             delegate?.writer(self, didUpdateCoverStatus: true)
 
-        case (6, 136): // No paper
+        case (0x06, 0x88): // No paper
             print("No paper")
             ready = false
             delegate?.writer(self, didUpdatePaperStatus: false)
 
-        case (6, 137): // Have paper
+        case (0x06, 0x89): // Have paper
             print("Have paper")
             delegate?.writer(self, didUpdatePaperStatus: true)
 
-        case (11, 184): // Cancel
+        case (0x0b, 0xb8): // Cancel
             print("Print cancelled")
 
-        case (15, 12): // Print complete
+        case (0x0f, 0x0c): // Print complete
             print("Print complete")
             delegate?.writerDidCompletePrint(self)
 
@@ -207,20 +207,24 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
 
     private func pollUntilReady(peripheral: CBPeripheral, characteristic: CBCharacteristic) async {
         while !ready {
-            // Query serial number
-            let sn = Data([83, 83, 83, 71, 69, 84, 83, 78, 13, 10])
+            // Query serial number: "SSSGETSN\r\n"
+            let sn = Data([0x53, 0x53, 0x53, 0x47, 0x45, 0x54, 0x53, 0x4e, 0x0d, 0x0a])
             peripheral.writeValue(sn, for: characteristic, type: .withResponse)
 
-            // Query compress mode
-            let compressMode = Data([83, 83, 83, 71, 69, 84, 66, 77, 65, 80, 77, 79, 68, 69, 13, 10])
+            // Query compress mode: "SSSGETBMAPMODE\r\n"
+            let compressMode = Data([
+                0x53, 0x53, 0x53, 0x47, 0x45, 0x54,
+                0x42, 0x4d, 0x41, 0x50, 0x4d, 0x4f, 0x44, 0x45,
+                0x0d, 0x0a
+            ])
             peripheral.writeValue(compressMode, for: characteristic, type: .withResponse)
 
             // Ask paper status
-            let askPaper = Data([31, 17, 17])
+            let askPaper = Data([0x1f, 0x11, 0x11])
             peripheral.writeValue(askPaper, for: characteristic, type: .withoutResponse)
 
             // Ask cover status
-            let askCover = Data([31, 17, 18])
+            let askCover = Data([0x1f, 0x11, 0x12])
             peripheral.writeValue(askCover, for: characteristic, type: .withoutResponse)
 
             try? await Task.sleep(nanoseconds: 500_000_000)

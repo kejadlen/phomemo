@@ -41,7 +41,7 @@ final class ShareViewModel: PhomemoWriterDelegate {
     }
 
     // MARK: - Image Loading
-
+	
     func loadImage(from itemProviders: [NSItemProvider]) {
         guard let provider = itemProviders.first else {
             state = .error("No image found")
