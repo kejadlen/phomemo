@@ -34,12 +34,12 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             return
         }
 
-        let imageData = Self.imageToData(image.dithered)
+        let imageData = Self.data(from: image.dithered)
         peripheral.writeValue(imageData, for: characteristic, type: .withoutResponse)
         print("Finished writing image data")
     }
 
-    private static func imageToData(_ image: CGImage) -> Data {
+    private static func data(from image: CGImage) -> Data {
         let width = image.width
         let height = image.height
 
