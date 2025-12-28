@@ -17,7 +17,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
 
     // Image state
     var previewImage: CGImage?
-    var imageURL: URL?
+    private var phomemoImage: PhomemoImage?
 
     private var writer: PhomemoWriter?
 
@@ -35,13 +35,12 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     }
 
     func loadImage(from url: URL) {
-        imageURL = url
-
-        guard let phomemoImage = PhomemoImage(url: url) else {
+        guard let image = PhomemoImage(url: url) else {
             return
         }
 
-        previewImage = phomemoImage.toMonochrome(dithered: true)
+        phomemoImage = image
+        previewImage = image.toMonochrome(dithered: true)
     }
 
     func loadImage(from itemProviders: [NSItemProvider]) {
@@ -72,14 +71,14 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     }
 
     func printImage() {
-        guard let url = imageURL, canPrint else { return }
+        guard let image = phomemoImage, canPrint else { return }
         isPrinting = true
-        writer?.printImage(from: url)
+        writer?.printImage(image)
     }
 
     func clearImage() {
         previewImage = nil
-        imageURL = nil
+        phomemoImage = nil
     }
 
     // MARK: - PhomemoWriterDelegate

@@ -26,15 +26,14 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         self.central = CBCentralManager(delegate: self, queue: .main)
     }
 
-    func printImage(from url: URL) {
+    func printImage(_ image: PhomemoImage) {
         guard let peripheral = targetPeripheral,
               let characteristic = writeChar else {
             delegate?.writer(self, didFailWithError: "Printer not connected")
             return
         }
 
-        guard let image = PhomemoImage(url: url),
-              let imageData = image.toPhomemoData(dithered: true) else {
+        guard let imageData = image.toPhomemoData(dithered: true) else {
             delegate?.writer(self, didFailWithError: "Failed to convert image")
             return
         }
