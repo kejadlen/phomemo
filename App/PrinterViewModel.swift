@@ -44,13 +44,11 @@ final class PrinterViewModel: PhomemoWriterDelegate {
         imageURL = url
 
         guard let phomemoImage = PhomemoImage(url: url) else {
-            statusMessage = "Failed to load image"
             return
         }
 
         originalImage = phomemoImage.cgImage
         previewImage = phomemoImage.toMonochrome(dithered: true)
-        statusMessage = "Image loaded"
     }
 
     func printImage() {

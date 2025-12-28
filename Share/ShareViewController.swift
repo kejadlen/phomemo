@@ -5,22 +5,18 @@ class ShareViewController: NSViewController {
     private var viewModel = ShareViewModel()
 
     override var nibName: NSNib.Name? {
-        // Return nil to skip NIB loading - we use SwiftUI
-        return nil
+        nil
     }
 
     override func loadView() {
-        // Create the view programmatically
-        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 400, height: 500))
+        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 400, height: 420))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Extract image from share extension context
         loadSharedImage()
 
-        // Set up SwiftUI view
         let shareView = ShareView(
             viewModel: viewModel,
             onCancel: { [weak self] in self?.cancel() },
@@ -29,7 +25,6 @@ class ShareViewController: NSViewController {
 
         let hostingView = NSHostingView(rootView: shareView)
         hostingView.translatesAutoresizingMaskIntoConstraints = false
-
         view.addSubview(hostingView)
 
         NSLayoutConstraint.activate([
@@ -86,50 +81,19 @@ struct ShareView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack {
-                Button("Cancel", action: onCancel)
-                    .buttonStyle(.plain)
-                Spacer()
-                Text("Print to Phomemo")
-                    .font(.headline)
-                Spacer()
-                // Spacer for symmetry
-                Button("Cancel") {}
-                    .buttonStyle(.plain)
-                    .hidden()
-            }
-            .padding()
-
-            Divider()
-
-            VStack(spacing: 20) {
-                // Preview
-                if let preview = viewModel.previewImage {
-                    ImagePreview(image: preview, maxHeight: 250)
-                } else {
-                    ImagePreviewPlaceholder()
-                }
-
-                // Status
-                HStack(spacing: 8) {
-                    StatusIcon(state: statusIconState, scale: 0.8)
-
-                    Text(viewModel.statusMessage)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                // Print button
-                PrintButton(action: viewModel.printImage, disabled: !viewModel.canPrint, fullWidth: true)
-                    .controlSize(.large)
-            }
-            .padding()
+        PrinterView(
+            previewImage: viewModel.previewImage,
+            statusIconState: statusIconState,
+            statusMessage: viewModel.statusMessage,
+            canPrint: viewModel.canPrint,
+            onPrint: viewModel.printImage
+        ) {
+            Button("Cancel", action: onCancel)
+                .buttonStyle(.plain)
+        } dropContent: {
+            ImagePreviewPlaceholder()
         }
-        .frame(width: 400, height: 450)
+        .frame(width: 400)
         .onChange(of: viewModel.state) { _, newState in
             if newState == .completed {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
