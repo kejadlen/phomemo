@@ -152,27 +152,35 @@ struct PhomemoView<DropContent: View>: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
-        .toolbarBackgroundVisibility(.hidden, for: .windowToolbar)
-        .toolbar {
+        .overlay(alignment: .topLeading) {
             if viewModel.previewImage != nil {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: onCancel) {
-                        Image(systemName: "xmark")
-                    }
+                Button(action: onCancel) {
+                    Image(systemName: "xmark")
+                        .padding(8)
+                        .background(.regularMaterial, in: Circle())
                 }
-
-                ToolbarItem(placement: .primaryAction) {
+                .buttonStyle(.plain)
+                .padding()
+            }
+        }
+        .overlay(alignment: .bottom) {
+            if viewModel.previewImage != nil {
+                Group {
                     if isConnecting {
                         ProgressView()
                             .controlSize(.small)
+                            .padding(8)
+                            .background(.regularMaterial, in: Circle())
                     } else {
                         Button(action: viewModel.printImage) {
-                            Image(systemName: "printer")
+                            Label("Print", systemImage: "printer")
                         }
                         .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
                         .disabled(!viewModel.canPrint)
                     }
                 }
+                .padding()
             }
         }
     }

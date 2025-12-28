@@ -9,7 +9,7 @@ class ShareViewController: NSViewController {
     }
 
     override func loadView() {
-        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 400, height: 420))
+        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 340, height: 450))
     }
 
     override func viewDidLoad() {
@@ -69,11 +69,58 @@ struct ShareView: View {
     let onCancel: () -> Void
     let onComplete: () -> Void
 
+    @FocusState private var isPrintFocused: Bool
+
+    private var isConnecting: Bool {
+        viewModel.connectionState != .connected || !viewModel.isReady
+    }
+
     var body: some View {
-        PhomemoView(viewModel: viewModel, onCancel: onCancel) {
-            ImagePreviewPlaceholder()
+        VStack(spacing: 0) {
+            // Header
+            Text("Phomemo")
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+
+            Divider()
+
+            // Content
+            ZStack {
+                Color.white
+                if let preview = viewModel.previewImage {
+                    Image(decorative: preview, scale: 1.0)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    ProgressView()
+                }
+            }
+
+            Divider()
+
+            // Footer
+            HStack {
+                if isConnecting {
+                    ProgressView()
+                        .controlSize(.small)
+                }
+                Spacer()
+                Button("Cancel", action: onCancel)
+                    .keyboardShortcut(.cancelAction)
+                Button("Print", action: viewModel.printImage)
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(!viewModel.canPrint)
+                    .focused($isPrintFocused)
+            }
+            .padding()
         }
-        .frame(width: 400, height: 400)
+        .frame(width: 340, height: 450)
+        .onChange(of: viewModel.canPrint) { _, canPrint in
+            if canPrint {
+                isPrintFocused = true
+            }
+        }
         .onChange(of: viewModel.printCompleted) { _, completed in
             if completed {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
