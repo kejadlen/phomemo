@@ -74,6 +74,17 @@ struct ShareView: View {
     let onCancel: () -> Void
     let onComplete: () -> Void
 
+    private var statusIconState: StatusIconState {
+        switch viewModel.state {
+        case .loading, .printing, .completed:
+            return .loading
+        case .ready:
+            return .ready
+        case .error:
+            return .error
+        }
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             // Header
@@ -96,33 +107,14 @@ struct ShareView: View {
             VStack(spacing: 20) {
                 // Preview
                 if let preview = viewModel.previewImage {
-                    Image(decorative: preview, scale: 1.0)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 250)
-                        .background(Color(white: 0.95))
-                        .cornerRadius(12)
+                    ImagePreview(image: preview, maxHeight: 250)
                 } else {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(white: 0.95))
-                        .frame(height: 200)
-                        .overlay {
-                            ProgressView()
-                        }
+                    ImagePreviewPlaceholder()
                 }
 
                 // Status
                 HStack(spacing: 8) {
-                    if viewModel.state == .loading || viewModel.state == .printing {
-                        ProgressView()
-                            .scaleEffect(0.8)
-                    } else if viewModel.state == .ready {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundStyle(.green)
-                    } else if case .error = viewModel.state {
-                        Image(systemName: "exclamationmark.circle.fill")
-                            .foregroundStyle(.red)
-                    }
+                    StatusIcon(state: statusIconState, scale: 0.8)
 
                     Text(viewModel.statusMessage)
                         .font(.subheadline)
@@ -132,15 +124,8 @@ struct ShareView: View {
                 Spacer()
 
                 // Print button
-                Button {
-                    viewModel.printImage()
-                } label: {
-                    Label("Print", systemImage: "printer")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .disabled(!viewModel.canPrint)
+                PrintButton(action: viewModel.printImage, disabled: !viewModel.canPrint, fullWidth: true)
+                    .controlSize(.large)
             }
             .padding()
         }

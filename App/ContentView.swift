@@ -34,32 +34,7 @@ struct ContentView: View {
     }
 
     private var connectionIndicator: some View {
-        HStack(spacing: 6) {
-            Circle()
-                .fill(connectionColor)
-                .frame(width: 10, height: 10)
-            Text(connectionText)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-    }
-
-    private var connectionColor: Color {
-        switch viewModel.connectionState {
-        case .disconnected: return .red
-        case .scanning: return .yellow
-        case .connecting: return .yellow
-        case .connected: return viewModel.isReady ? .green : .yellow
-        }
-    }
-
-    private var connectionText: String {
-        switch viewModel.connectionState {
-        case .disconnected: return "Disconnected"
-        case .scanning: return "Scanning..."
-        case .connecting: return "Connecting..."
-        case .connected: return viewModel.isReady ? "Ready" : "Initializing..."
-        }
+        ConnectionIndicator(state: viewModel.connectionState, isReady: viewModel.isReady)
     }
 
     // MARK: - Scanning State
@@ -102,13 +77,7 @@ struct ContentView: View {
 
                 Spacer()
 
-                Button {
-                    viewModel.printImage()
-                } label: {
-                    Label("Print", systemImage: "printer")
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(!viewModel.canPrint)
+                PrintButton(action: viewModel.printImage, disabled: !viewModel.canPrint)
             }
             .padding(.horizontal)
         }
@@ -117,29 +86,8 @@ struct ContentView: View {
 
     private func imagePreviewRow(original: CGImage, preview: CGImage) -> some View {
         HStack(spacing: 20) {
-            VStack {
-                Text("Original")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Image(decorative: original, scale: 1.0)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxHeight: 200)
-                    .background(Color(white: 0.95))
-                    .cornerRadius(8)
-            }
-
-            VStack {
-                Text("Print Preview")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Image(decorative: preview, scale: 1.0)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxHeight: 200)
-                    .background(Color(white: 0.95))
-                    .cornerRadius(8)
-            }
+            ImagePreview(image: original, caption: "Original")
+            ImagePreview(image: preview, caption: "Print Preview")
         }
     }
 
@@ -171,19 +119,19 @@ struct ContentView: View {
 
     private var statusBar: some View {
         HStack(spacing: 16) {
-            statusItem(
+            StatusItem(
                 icon: viewModel.hasPaper ? "doc.fill" : "doc",
                 text: viewModel.hasPaper ? "Paper OK" : "No Paper",
                 ok: viewModel.hasPaper
             )
 
-            statusItem(
+            StatusItem(
                 icon: viewModel.temperatureOK ? "thermometer.medium" : "thermometer.high",
                 text: viewModel.temperatureOK ? "Temp OK" : "Too Hot",
                 ok: viewModel.temperatureOK
             )
 
-            statusItem(
+            StatusItem(
                 icon: viewModel.coverClosed ? "door.left.hand.closed" : "door.left.hand.open",
                 text: viewModel.coverClosed ? "Cover Closed" : "Cover Open",
                 ok: viewModel.coverClosed
@@ -198,15 +146,6 @@ struct ContentView: View {
         .padding(.horizontal)
         .padding(.vertical, 8)
         .background(Color(nsColor: .windowBackgroundColor))
-    }
-
-    private func statusItem(icon: String, text: String, ok: Bool) -> some View {
-        HStack(spacing: 4) {
-            Image(systemName: icon)
-                .foregroundStyle(ok ? .green : .red)
-            Text(text)
-                .font(.caption)
-        }
     }
 
     // MARK: - Actions

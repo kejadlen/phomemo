@@ -17,6 +17,8 @@
 		DE53299C2F00A39B00E97BA2 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329922F00A38900E97BA2 /* ShareViewModel.swift */; };
 		DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
 		DE53299E2F00A3A200E97BA2 /* PhomemoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */; };
+		DE5329A02F00A3B000E97BA2 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* SharedViews.swift */; };
+		DE5329A12F00A3B000E97BA2 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* SharedViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 		DE53298F2F00A38900E97BA2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		DE5329902F00A38900E97BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShareViewController.xib; sourceTree = "<group>"; };
 		DE5329922F00A38900E97BA2 /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
+		DE53299F2F00A3B000E97BA2 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,7 @@
 			children = (
 				DE5329892F00A38900E97BA2 /* PhomemoImage.swift */,
 				DE53298A2F00A38900E97BA2 /* PhomemoWriter.swift */,
+				DE53299F2F00A3B000E97BA2 /* SharedViews.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -228,6 +232,7 @@
 				DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */,
 				DE5329982F00A38900E97BA2 /* PhomemoWriter.swift in Sources */,
 				DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */,
+				DE5329A02F00A3B000E97BA2 /* SharedViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +244,7 @@
 				DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */,
 				DE53299C2F00A39B00E97BA2 /* ShareViewModel.swift in Sources */,
 				DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */,
+				DE5329A12F00A3B000E97BA2 /* SharedViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

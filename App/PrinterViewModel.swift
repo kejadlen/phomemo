@@ -1,13 +1,6 @@
 import SwiftUI
 import CoreGraphics
 
-enum ConnectionState: Equatable {
-    case disconnected
-    case scanning
-    case connecting
-    case connected
-}
-
 @Observable
 final class PrinterViewModel: PhomemoWriterDelegate {
     // Connection state
