@@ -57,7 +57,6 @@
 		DE53298D2F00A38900E97BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhomemoShare.entitlements; sourceTree = "<group>"; };
 		DE53298F2F00A38900E97BA2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		DE5329902F00A38900E97BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShareViewController.xib; sourceTree = "<group>"; };
 		DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +124,6 @@
 				DE53298D2F00A38900E97BA2 /* Info.plist */,
 				DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */,
 				DE53298F2F00A38900E97BA2 /* ShareViewController.swift */,
-				DE5329912F00A38900E97BA2 /* ShareViewController.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -255,17 +253,6 @@
 			targetProxy = DE5328E22F009DD500E97BA2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		DE5329912F00A38900E97BA2 /* ShareViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE5329902F00A38900E97BA2 /* Base */,
-			);
-			name = ShareViewController.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5490357A2E90B74100F904F8 /* Debug */ = {
