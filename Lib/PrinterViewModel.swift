@@ -19,19 +19,15 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     var previewImage: CGImage?
     private var phomemoImage: PhomemoImage?
 
-    private var writer: PhomemoWriter?
+    @ObservationIgnored private lazy var writer = PhomemoWriter(delegate: self)
 
     var canPrint: Bool {
         connectionState == .connected && isReady && previewImage != nil && !isPrinting
     }
 
     init() {
-        startScanning()
-    }
-
-    func startScanning() {
         connectionState = .scanning
-        writer = PhomemoWriter(delegate: self)
+        _ = writer // trigger lazy initialization
     }
 
     func loadImage(from url: URL) {
@@ -73,7 +69,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     func printImage() {
         guard let image = phomemoImage, canPrint else { return }
         isPrinting = true
-        writer?.printImage(image)
+        writer.printImage(image)
     }
 
     func clearImage() {
