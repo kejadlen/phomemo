@@ -70,7 +70,7 @@ struct ShareView: View {
     let onComplete: () -> Void
 
     var body: some View {
-        PhomemoView(viewModel: viewModel, onClear: onCancel) {
+        PhomemoView(viewModel: viewModel, onCancel: onCancel) {
             ImagePreviewPlaceholder()
         }
         .frame(width: 400, height: 400)

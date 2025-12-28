@@ -16,18 +16,23 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
     var printCompleted: Bool = false
 
     // Image state
-    var previewImage: CGImage?
     private var phomemoImage: PhomemoImage?
 
-    @ObservationIgnored private lazy var writer = PhomemoWriter(delegate: self)
+    private var writer: PhomemoWriter!
+
+//    @ObservationIgnored private lazy var writer = PhomemoWriter(delegate: self)
 
     var canPrint: Bool {
         connectionState == .connected && isReady && previewImage != nil && !isPrinting
     }
 
+    var previewImage: CGImage? {
+        self.phomemoImage?.dithered
+    }
+
     init() {
         connectionState = .scanning
-        _ = writer // trigger lazy initialization
+        writer = PhomemoWriter(delegate: self)
     }
 
     func loadImage(from url: URL) {
@@ -36,7 +41,6 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
         }
 
         phomemoImage = image
-        previewImage = image.dithered
     }
 
     func loadImage(from itemProviders: [NSItemProvider]) {
@@ -73,7 +77,6 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
     }
 
     func clearImage() {
-        previewImage = nil
         phomemoImage = nil
     }
 

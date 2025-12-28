@@ -124,16 +124,16 @@ struct DropZone: View {
 
 struct PhomemoView<DropContent: View>: View {
     @Bindable var viewModel: PhomemoViewModel
-    let onClear: () -> Void
+    let onCancel: () -> Void
     let dropContent: () -> DropContent
 
     init(
         viewModel: PhomemoViewModel,
-        onClear: @escaping () -> Void,
+        onCancel: @escaping () -> Void,
         @ViewBuilder dropContent: @escaping () -> DropContent
     ) {
         self.viewModel = viewModel
-        self.onClear = onClear
+        self.onCancel = onCancel
         self.dropContent = dropContent
     }
 
@@ -156,7 +156,7 @@ struct PhomemoView<DropContent: View>: View {
         .toolbar {
             if viewModel.previewImage != nil {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: onClear) {
+                    Button(action: onCancel) {
                         Image(systemName: "xmark")
                     }
                 }
