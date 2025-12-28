@@ -36,7 +36,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
         }
 
         phomemoImage = image
-        previewImage = image.toMonochrome(dithered: true)
+        previewImage = image.dithered
     }
 
     func loadImage(from itemProviders: [NSItemProvider]) {

@@ -4,18 +4,32 @@ import ImageIO
 
 public struct PhomemoImage {
     public let cgImage: CGImage
+    public let dithered: CGImage
     public var width: Int = 384 // This is specific to the T02 printer
 
-    public init?(url: URL, width: Int = 384) {
+    public init?(url: URL) {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
               let img = CGImageSourceCreateImageAtIndex(src, 0, nil),
               let normalized = try? img.normalized()
         else { return nil }
+
         self.cgImage = normalized
-        self.width = width
+        guard let dithered = Self.makeDithered(from: normalized, width: width) else { return nil }
+        self.dithered = dithered
     }
 
-    public func toMonochrome(dithered: Bool = true) -> CGImage? {
+    private static func makeDithered(from cgImage: CGImage, width: Int) -> CGImage? {
+        guard let rotated = cgImage.width > cgImage.height ? cgImage.rotated(by: .pi / 2) : cgImage else {
+            return nil
+        }
+        let aspectRatio = CGFloat(rotated.height) / CGFloat(rotated.width)
+        let targetHeight = Int(CGFloat(width) * aspectRatio)
+        let targetSize = CGSize(width: CGFloat(width), height: CGFloat(targetHeight))
+        guard let resized = rotated.resized(to: targetSize) else { return nil }
+        return resized.toDitheredMonochrome()
+    }
+
+    private func toMonochrome(dithered: Bool = true) -> CGImage? {
         guard let rotated = cgImage.width > cgImage.height ? cgImage.rotated(by: .pi / 2) : self.cgImage else {
             return nil
         }
