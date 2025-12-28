@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreGraphics
+import UniformTypeIdentifiers
 
 @Observable
 final class PrinterViewModel: PhomemoWriterDelegate {
@@ -12,6 +13,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
     var temperatureOK: Bool = true
     var isReady: Bool = false
     var isPrinting: Bool = false
+    var printCompleted: Bool = false
 
     // Image state
     var originalImage: CGImage?
@@ -46,6 +48,33 @@ final class PrinterViewModel: PhomemoWriterDelegate {
 
         originalImage = phomemoImage.cgImage
         previewImage = phomemoImage.toMonochrome(dithered: true)
+    }
+
+    func loadImage(from itemProviders: [NSItemProvider]) {
+        guard let provider = itemProviders.first else { return }
+
+        if provider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+            provider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { [weak self] data, _ in
+                guard let data else { return }
+                let tempURL = FileManager.default.temporaryDirectory
+                    .appendingPathComponent(UUID().uuidString)
+                    .appendingPathExtension("png")
+                do {
+                    try data.write(to: tempURL)
+                    DispatchQueue.main.async {
+                        self?.loadImage(from: tempURL)
+                    }
+                } catch {}
+            }
+        } else if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
+            provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { [weak self] item, _ in
+                if let url = item as? URL {
+                    DispatchQueue.main.async {
+                        self?.loadImage(from: url)
+                    }
+                }
+            }
+        }
     }
 
     func printImage() {
@@ -99,6 +128,7 @@ final class PrinterViewModel: PhomemoWriterDelegate {
 
     func writerDidCompletePrint(_ writer: PhomemoWriter) {
         isPrinting = false
+        printCompleted = true
         statusMessage = "Print complete!"
     }
 

@@ -2,7 +2,7 @@ import SwiftUI
 import AppKit
 
 class ShareViewController: NSViewController {
-    private var viewModel = ShareViewModel()
+    private var viewModel = PrinterViewModel()
 
     override var nibName: NSNib.Name? {
         nil
@@ -65,22 +65,27 @@ class ShareViewController: NSViewController {
 // MARK: - SwiftUI View
 
 struct ShareView: View {
-    @Bindable var viewModel: ShareViewModel
+    @Bindable var viewModel: PrinterViewModel
     let onCancel: () -> Void
     let onComplete: () -> Void
+
+    private var isConnecting: Bool {
+        viewModel.connectionState != .connected || !viewModel.isReady
+    }
 
     var body: some View {
         PrinterView(
             previewImage: viewModel.previewImage,
             canPrint: viewModel.canPrint,
+            isConnecting: isConnecting,
             onPrint: viewModel.printImage,
             onClear: onCancel
         ) {
             ImagePreviewPlaceholder()
         }
         .frame(width: 400, height: 400)
-        .onChange(of: viewModel.state) { _, newState in
-            if newState == .completed {
+        .onChange(of: viewModel.printCompleted) { _, completed in
+            if completed {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     onComplete()
                 }
