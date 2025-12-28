@@ -1,4 +1,5 @@
 import CoreBluetooth
+import CoreGraphics
 import Foundation
 
 protocol PhomemoWriterDelegate: AnyObject {
@@ -33,13 +34,80 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
             return
         }
 
-        guard let imageData = image.toPhomemoData(dithered: true) else {
-            delegate?.writer(self, didFailWithError: "Failed to convert image")
-            return
-        }
-
+        let imageData = Self.imageToData(image.dithered)
         peripheral.writeValue(imageData, for: characteristic, type: .withoutResponse)
         print("Finished writing image data")
+    }
+
+    private static func imageToData(_ image: CGImage) -> Data {
+        let width = image.width
+        let height = image.height
+
+        guard let buf = image.dataProvider?.data,
+              let pixels = CFDataGetBytePtr(buf) else { return Data() }
+
+        var remaining = height
+        var y = 0
+
+        var data = Data()
+        data.append(header())
+
+        while remaining > 0 {
+            var lines = remaining
+            if lines > 256 { lines = 256 }
+            data.append(marker(lines: UInt8(lines - 1)))
+            remaining -= lines
+            while lines > 0 {
+                data.append(line(pixels: pixels, width: width, row: y))
+                lines -= 1
+                y += 1
+            }
+        }
+        data.append(footer())
+
+        return data
+    }
+
+    private static func header() -> Data {
+        Data([0x1b, 0x40, 0x1b, 0x61, 0x01, 0x1f, 0x11, 0x02, 0x04])
+    }
+
+    private static func marker(lines: UInt8) -> Data {
+        Data([
+            0x1d, 0x76,
+            0x30, 0x00,
+            0x30, 0x00,
+            lines, 0x00
+        ])
+    }
+
+    private static func line(pixels: UnsafePointer<UInt8>, width: Int, row: Int) -> Data {
+        var data = Data()
+        for x in 0..<(width) / 8 {
+            var byte: UInt8 = 0
+            for bit in 0..<8 {
+                let pixelX = x * 8 + bit
+                if pixels[row * width + pixelX] == 0 {
+                    byte |= 1 << (7 - bit)
+                }
+            }
+            if byte == 0x0a {
+                byte = 0x14
+            }
+            data.append(byte)
+        }
+        return data
+    }
+
+    private static func footer() -> Data {
+        Data([
+            0x1b, 0x64, 0x02,
+            0x1b, 0x64, 0x02,
+            0x1f, 0x11, 0x08,
+            0x1f, 0x11, 0x0e,
+            0x1f, 0x11, 0x07,
+            0x1f, 0x11, 0x09
+        ])
     }
 
     // MARK: - CBCentralManagerDelegate
