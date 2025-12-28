@@ -5,12 +5,13 @@ import ImageIO
 public struct PhomemoImage {
     public let cgImage: CGImage
     public var width: Int = 384 // This is specific to the T02 printer
-    
+
     public init?(url: URL, width: Int = 384) {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
-              let img = CGImageSourceCreateImageAtIndex(src, 0, nil)
+              let img = CGImageSourceCreateImageAtIndex(src, 0, nil),
+              let normalized = try? img.normalized()
         else { return nil }
-        self.cgImage = try! img.normalized()
+        self.cgImage = normalized
         self.width = width
     }
 
@@ -18,18 +19,17 @@ public struct PhomemoImage {
         guard let rotated = cgImage.width > cgImage.height ? cgImage.rotated(by: .pi / 2) : self.cgImage else {
             return nil
         }
-        
-        
+
         let targetWidth = self.width
         let aspectRatio = CGFloat(rotated.height) / CGFloat(rotated.width)
         let targetHeight = Int(CGFloat(targetWidth) * aspectRatio)
-        
-        guard let resized = rotated.resized(to: CGSize(width: CGFloat(targetWidth), height: CGFloat(targetHeight))) else { return nil
-        }
-        
+
+        let targetSize = CGSize(width: CGFloat(targetWidth), height: CGFloat(targetHeight))
+        guard let resized = rotated.resized(to: targetSize) else { return nil }
+
         let mono = dithered ? resized.toDitheredMonochrome() : resized.toMonochrome()
         guard let gray = mono else { return nil }
-        
+
         return gray
     }
 
@@ -37,23 +37,23 @@ public struct PhomemoImage {
         guard let rotated = cgImage.width > cgImage.height ? cgImage.rotated(by: .pi / 2) : self.cgImage else {
             return nil
         }
-        
+
         let targetWidth = self.width
         let aspectRatio = CGFloat(rotated.height) / CGFloat(rotated.width)
         let targetHeight = Int(CGFloat(targetWidth) * aspectRatio)
-        
-        guard let resized = rotated.resized(to: CGSize(width: CGFloat(targetWidth), height: CGFloat(targetHeight))) else { return nil
-        }
+
+        let targetSize = CGSize(width: CGFloat(targetWidth), height: CGFloat(targetHeight))
+        guard let resized = rotated.resized(to: targetSize) else { return nil }
 
         let mono = dithered ? resized.toDitheredMonochrome() : resized.toMonochrome()
-        
+
         guard let gray = mono else { return nil }
         let width = gray.width
         let height = gray.height
 
         guard let buf = gray.dataProvider?.data,
               let pixels = CFDataGetBytePtr(buf) else { return nil }
-        
+
         var remaining = height
         var y = 0
 
@@ -75,11 +75,11 @@ public struct PhomemoImage {
 
         return data
     }
-    
+
     private func header() -> Data {
         return Data([0x1b, 0x40, 0x1b, 0x61, 0x01, 0x1f, 0x11, 0x02, 0x04])
     }
-    
+
     private func marker(lines: UInt8) -> Data {
         // All little endian
         return Data([
@@ -89,7 +89,7 @@ public struct PhomemoImage {
             lines, 0x00
         ])
     }
-    
+
     private func line(pixels: UnsafePointer<UInt8>, width: Int, row: Int) -> Data {
         var data = Data()
         for x in 0..<(width) / 8 {
@@ -142,7 +142,7 @@ private extension CGImage {
         guard let normalized = ctx.makeImage() else { throw NSError(domain: "ImageError", code: 3) }
         return normalized
     }
-    
+
     func resized(to target: CGSize) -> CGImage? {
         guard let colorSpace = colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB) else { return nil }
         guard let ctx = CGContext(data: nil,
@@ -212,7 +212,7 @@ private extension CGImage {
 
         return outCtx.makeImage()
     }
-    
+
     func toClassicDitheredMonochrome() -> CGImage? {
         let width = self.width, height = self.height
         let colorSpace = CGColorSpaceCreateDeviceGray()
@@ -236,11 +236,17 @@ private extension CGImage {
                 let new: Float = old < 128 ? 0 : 255
                 pixels[i] = UInt8(new)
                 let err = old - new
-                if x + 1 < width { pixels[i + 1] = clampToByte(Float(pixels[i + 1]) + 7/16 * err) }
+                if x + 1 < width {
+                    pixels[i + 1] = clampToByte(Float(pixels[i + 1]) + 7/16 * err)
+                }
                 if y + 1 < height {
-                    if x > 0 { pixels[i + width - 1] = clampToByte(Float(pixels[i + width - 1]) + 3/16 * err) }
+                    if x > 0 {
+                        pixels[i + width - 1] = clampToByte(Float(pixels[i + width - 1]) + 3/16 * err)
+                    }
                     pixels[i + width] = clampToByte(Float(pixels[i + width]) + 5/16 * err)
-                    if x + 1 < width { pixels[i + width + 1] = clampToByte(Float(pixels[i + width + 1]) + 1/16 * err) }
+                    if x + 1 < width {
+                        pixels[i + width + 1] = clampToByte(Float(pixels[i + width + 1]) + 1/16 * err)
+                    }
                 }
             }
         }
@@ -256,7 +262,8 @@ private extension CGImage {
 
         return outCtx.makeImage()
     }
-    
+
+    // swiftlint:disable:next function_body_length
     func toDitheredMonochrome() -> CGImage? {
         let width = self.width
         let height = self.height
@@ -294,19 +301,19 @@ private extension CGImage {
         // Floyd–Steinberg error diffusion (Pillow-style)
         for y in 0..<height {
             for x in 0..<width {
-                let idx = y * width + x
-                let oldPixel = gray[idx]
+                let i = y * width + x
+                let oldPixel = gray[i]
                 let newPixel = (oldPixel < 128.0) ? 0.0 : 255.0
                 let err = oldPixel - newPixel
-                gray[idx] = newPixel
+                gray[i] = newPixel
 
                 if x + 1 < width {
-                    gray[idx + 1] += err * 7.0 / 16.0
+                    gray[i + 1] += err * 7.0 / 16.0
                 }
                 if y + 1 < height {
-                    if x > 0 { gray[idx + width - 1] += err * 3.0 / 16.0 }
-                    gray[idx + width] += err * 5.0 / 16.0
-                    if x + 1 < width { gray[idx + width + 1] += err * 1.0 / 16.0 }
+                    if x > 0 { gray[i + width - 1] += err * 3.0 / 16.0 }
+                    gray[i + width] += err * 5.0 / 16.0
+                    if x + 1 < width { gray[i + width + 1] += err * 1.0 / 16.0 }
                 }
             }
         }

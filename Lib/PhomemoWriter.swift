@@ -120,10 +120,8 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
 
         print("Discovered characteristics")
 
-        for char in chars {
-            if char.properties.contains(.notify) {
-                peripheral.setNotifyValue(true, for: char)
-            }
+        for char in chars where char.properties.contains(.notify) {
+            peripheral.setNotifyValue(true, for: char)
         }
 
         // FF02 is the write characteristic
@@ -149,6 +147,7 @@ final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDeleg
         print("Notifications enabled for \(characteristic.uuid)")
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
             print("Error reading characteristic: \(error.localizedDescription)")

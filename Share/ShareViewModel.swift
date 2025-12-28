@@ -57,7 +57,7 @@ final class ShareViewModel: PhomemoWriterDelegate {
                 }
             }
         } else if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
-            provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { [weak self] item, error in
+            provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { [weak self] item, _ in
                 DispatchQueue.main.async {
                     if let url = item as? URL {
                         self?.handleImageURL(url)

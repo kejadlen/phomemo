@@ -102,7 +102,9 @@ struct ContentView: View {
 
                 Spacer()
 
-                Button(action: { viewModel.printImage() }) {
+                Button {
+                    viewModel.printImage()
+                } label: {
                     Label("Print", systemImage: "printer")
                 }
                 .buttonStyle(.borderedProminent)

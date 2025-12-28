@@ -132,9 +132,9 @@ struct ShareView: View {
                 Spacer()
 
                 // Print button
-                Button(action: {
+                Button {
                     viewModel.printImage()
-                }) {
+                } label: {
                     Label("Print", systemImage: "printer")
                         .frame(maxWidth: .infinity)
                 }
