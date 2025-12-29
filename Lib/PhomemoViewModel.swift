@@ -8,11 +8,15 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
     var connectionState: ConnectionState = .disconnected
 
     // Printer status
-    var hasPaper: Bool = true
-    var coverClosed: Bool = true
-    var temperatureOK: Bool = true
-    var isReady: Bool = false
+    private var hasPaper: Bool = true
+    private var coverClosed: Bool = true
+    private var temperatureOK: Bool = true
+    private var printerConnected: Bool = false
     var isPrinting: Bool = false
+
+    var isReady: Bool {
+        printerConnected && hasPaper && coverClosed && temperatureOK
+    }
     var printCompleted: Bool = false
 
     // Image state
@@ -90,22 +94,19 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
 
     func writerDidBecomeReady(_ writer: PhomemoWriter) {
         connectionState = .connected
-        isReady = true
+        printerConnected = true
     }
 
     func writer(_ writer: PhomemoWriter, didUpdatePaperStatus hasPaper: Bool) {
         self.hasPaper = hasPaper
-        self.isReady = hasPaper && coverClosed && temperatureOK
     }
 
     func writer(_ writer: PhomemoWriter, didUpdateCoverStatus closed: Bool) {
         self.coverClosed = closed
-        self.isReady = hasPaper && coverClosed && temperatureOK
     }
 
     func writer(_ writer: PhomemoWriter, didUpdateTemperatureStatus ok: Bool) {
         self.temperatureOK = ok
-        self.isReady = hasPaper && coverClosed && temperatureOK
     }
 
     func writerDidCompletePrint(_ writer: PhomemoWriter) {
