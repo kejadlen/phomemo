@@ -152,37 +152,43 @@ struct PhomemoView<DropContent: View>: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
-        .overlay(alignment: .topTrailing) {
-            if viewModel.previewImage != nil {
-                Button(action: onCancel) {
-                    Image(systemName: "xmark")
-                        .padding(8)
-                        .background(.regularMaterial, in: Circle())
-                }
-                .buttonStyle(.plain)
-                .padding(10)
-                .ignoresSafeArea()
+        .overlay(alignment: .topTrailing) { cancelButton }
+        .overlay(alignment: .bottomTrailing) { printButton }
+    }
+
+    @ViewBuilder
+    private var cancelButton: some View {
+        if viewModel.previewImage != nil {
+            Button(action: onCancel) {
+                Image(systemName: "xmark")
+                    .padding(8)
+                    .background(.regularMaterial, in: Circle())
             }
+            .buttonStyle(.plain)
+            .padding(10)
+            .ignoresSafeArea()
         }
-        .overlay(alignment: .bottomTrailing) {
-            if viewModel.previewImage != nil {
-                Group {
-                    if isConnecting {
-                        ProgressView()
-                            .controlSize(.small)
-                            .frame(width: 52, height: 52)
-                            .background(.regularMaterial, in: Circle())
-                    } else {
-                        Button(action: viewModel.printImage) {
-                            Image(systemName: "printer.fill")
-                                .font(.title2)
-                                .frame(width: 52, height: 52)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .clipShape(Circle())
-                        .disabled(!viewModel.canPrint)
-                    }
+    }
+
+    @ViewBuilder
+    private var printButton: some View {
+        if viewModel.previewImage != nil {
+            if isConnecting {
+                ProgressView()
+                    .controlSize(.small)
+                    .frame(width: 52, height: 52)
+                    .background(.regularMaterial, in: Circle())
+                    .shadow(radius: 4)
+                    .padding(10)
+            } else {
+                Button(action: viewModel.printImage) {
+                    Image(systemName: "printer.fill")
+                        .font(.title2)
+                        .frame(width: 52, height: 52)
                 }
+                .buttonStyle(.borderedProminent)
+                .clipShape(Circle())
+                .disabled(!viewModel.canPrint)
                 .shadow(radius: 4)
                 .padding(10)
             }
