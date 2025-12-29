@@ -152,7 +152,7 @@ struct PhomemoView<DropContent: View>: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
-        .overlay(alignment: .topLeading) {
+        .overlay(alignment: .topTrailing) {
             if viewModel.previewImage != nil {
                 Button(action: onCancel) {
                     Image(systemName: "xmark")
@@ -160,27 +160,31 @@ struct PhomemoView<DropContent: View>: View {
                         .background(.regularMaterial, in: Circle())
                 }
                 .buttonStyle(.plain)
-                .padding()
+                .padding(10)
+                .ignoresSafeArea()
             }
         }
-        .overlay(alignment: .bottom) {
+        .overlay(alignment: .bottomTrailing) {
             if viewModel.previewImage != nil {
                 Group {
                     if isConnecting {
                         ProgressView()
                             .controlSize(.small)
-                            .padding(8)
+                            .frame(width: 52, height: 52)
                             .background(.regularMaterial, in: Circle())
                     } else {
                         Button(action: viewModel.printImage) {
-                            Label("Print", systemImage: "printer")
+                            Image(systemName: "printer.fill")
+                                .font(.title2)
+                                .frame(width: 52, height: 52)
                         }
                         .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
+                        .clipShape(Circle())
                         .disabled(!viewModel.canPrint)
                     }
                 }
-                .padding()
+                .shadow(radius: 4)
+                .padding(10)
             }
         }
     }

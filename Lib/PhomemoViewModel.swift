@@ -20,8 +20,6 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
 
     private var writer: PhomemoWriter!
 
-//    @ObservationIgnored private lazy var writer = PhomemoWriter(delegate: self)
-
     var canPrint: Bool {
         connectionState == .connected && isReady && previewImage != nil && !isPrinting
     }
