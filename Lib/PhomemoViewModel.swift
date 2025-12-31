@@ -22,7 +22,7 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
     // Image state
     private var phomemoImage: PhomemoImage?
 
-    private var writer: PhomemoWriter!
+    private var manager: PhomemoManager!
 
     var canPrint: Bool {
         connectionState == .connected && isReady && previewImage != nil && !isPrinting
@@ -34,7 +34,7 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
 
     init() {
         connectionState = .scanning
-        writer = PhomemoWriter(delegate: self)
+        manager = PhomemoManager(delegate: self)
     }
 
     func loadImage(from url: URL) {
@@ -75,7 +75,7 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
     func printImage() {
         guard let image = phomemoImage, canPrint else { return }
         isPrinting = true
-        writer.printImage(image)
+        manager.printImage(image)
     }
 
     func clearImage() {
@@ -84,37 +84,37 @@ final class PhomemoViewModel: PhomemoWriterDelegate {
 
     // MARK: - PhomemoWriterDelegate
 
-    func writerDidStartScanning(_ writer: PhomemoWriter) {
+    func writerDidStartScanning(_ writer: PhomemoManager) {
         connectionState = .scanning
     }
 
-    func writerDidConnect(_ writer: PhomemoWriter) {
+    func writerDidConnect(_ writer: PhomemoManager) {
         connectionState = .connecting
     }
 
-    func writerDidBecomeReady(_ writer: PhomemoWriter) {
+    func writerDidBecomeReady(_ writer: PhomemoManager) {
         connectionState = .connected
         printerConnected = true
     }
 
-    func writer(_ writer: PhomemoWriter, didUpdatePaperStatus hasPaper: Bool) {
+    func writer(_ writer: PhomemoManager, didUpdatePaperStatus hasPaper: Bool) {
         self.hasPaper = hasPaper
     }
 
-    func writer(_ writer: PhomemoWriter, didUpdateCoverStatus closed: Bool) {
+    func writer(_ writer: PhomemoManager, didUpdateCoverStatus closed: Bool) {
         self.coverClosed = closed
     }
 
-    func writer(_ writer: PhomemoWriter, didUpdateTemperatureStatus ok: Bool) {
+    func writer(_ writer: PhomemoManager, didUpdateTemperatureStatus ok: Bool) {
         self.temperatureOK = ok
     }
 
-    func writerDidCompletePrint(_ writer: PhomemoWriter) {
+    func writerDidCompletePrint(_ writer: PhomemoManager) {
         isPrinting = false
         printCompleted = true
     }
 
-    func writer(_ writer: PhomemoWriter, didFailWithError error: String) {
+    func writer(_ writer: PhomemoManager, didFailWithError error: String) {
         isPrinting = false
         if connectionState == .scanning || connectionState == .connecting {
             connectionState = .disconnected

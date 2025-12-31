@@ -3,17 +3,17 @@ import CoreGraphics
 import Foundation
 
 protocol PhomemoWriterDelegate: AnyObject {
-    func writerDidStartScanning(_ writer: PhomemoWriter)
-    func writerDidConnect(_ writer: PhomemoWriter)
-    func writerDidBecomeReady(_ writer: PhomemoWriter)
-    func writer(_ writer: PhomemoWriter, didUpdatePaperStatus hasPaper: Bool)
-    func writer(_ writer: PhomemoWriter, didUpdateCoverStatus closed: Bool)
-    func writer(_ writer: PhomemoWriter, didUpdateTemperatureStatus ok: Bool)
-    func writerDidCompletePrint(_ writer: PhomemoWriter)
-    func writer(_ writer: PhomemoWriter, didFailWithError error: String)
+    func writerDidStartScanning(_ writer: PhomemoManager)
+    func writerDidConnect(_ writer: PhomemoManager)
+    func writerDidBecomeReady(_ writer: PhomemoManager)
+    func writer(_ writer: PhomemoManager, didUpdatePaperStatus hasPaper: Bool)
+    func writer(_ writer: PhomemoManager, didUpdateCoverStatus closed: Bool)
+    func writer(_ writer: PhomemoManager, didUpdateTemperatureStatus ok: Bool)
+    func writerDidCompletePrint(_ writer: PhomemoManager)
+    func writer(_ writer: PhomemoManager, didFailWithError error: String)
 }
 
-final class PhomemoWriter: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+final class PhomemoManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private weak var delegate: PhomemoWriterDelegate?
     private var ready = false
     private var central: CBCentralManager!
