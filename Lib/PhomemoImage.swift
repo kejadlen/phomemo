@@ -10,8 +10,14 @@ public struct PhomemoImage {
 
     public init?(url: URL) {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil),
-              let img = CGImageSourceCreateImageAtIndex(src, 0, nil),
-              let prepared = Self.prepare(img),
+              let img = CGImageSourceCreateImageAtIndex(src, 0, nil)
+        else { return nil }
+
+        self.init(cgImage: img)
+    }
+
+    public init?(cgImage: CGImage) {
+        guard let prepared = Self.prepare(cgImage),
               let dithered = prepared.toDitheredMonochrome()
         else { return nil }
 

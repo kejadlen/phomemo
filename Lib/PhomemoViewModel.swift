@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreGraphics
 import UniformTypeIdentifiers
+import AppKit
 
 @Observable
 final class PhomemoViewModel: PhomemoManagerDelegate {
@@ -34,6 +35,15 @@ final class PhomemoViewModel: PhomemoManagerDelegate {
 
     func loadImage(from url: URL) {
         guard let image = PhomemoImage(url: url) else {
+            return
+        }
+
+        phomemoImage = image
+    }
+
+    func loadImage(from nsImage: NSImage) {
+        guard let cgImage = nsImage.cgImage(forProposedRect: nil, context: nil, hints: nil),
+              let image = PhomemoImage(cgImage: cgImage) else {
             return
         }
 
