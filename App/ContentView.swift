@@ -8,30 +8,50 @@ struct ContentView: View {
     var body: some View {
         ImageWell(image: viewModel.previewImage, onImageDropped: viewModel.loadImage)
             .frame(minWidth: 300, minHeight: 300)
-            .overlay { openButton }
+            .overlay { dropHint }
             .overlay(alignment: .topTrailing) { clearButton }
-            .overlay(alignment: .bottomTrailing) { printButton }
-            .onChange(of: viewModel.previewImage) { _, newImage in
-                guard let window = NSApp.keyWindow else { return }
-
-                if let image = newImage {
-                    let aspectRatio = CGFloat(image.width) / CGFloat(image.height)
-                    let currentHeight = window.contentView?.bounds.height ?? 400
-                    let newWidth = currentHeight * aspectRatio
-
-                    window.setContentSize(NSSize(width: newWidth, height: currentHeight))
-                    window.contentAspectRatio = NSSize(width: aspectRatio, height: 1)
-                } else {
-                    window.contentAspectRatio = NSSize.zero
-                }
+            .overlay(alignment: .bottom) {
+                actionButton
+                    .padding()
             }
+            .onChange(of: viewModel.previewImage) { _, newImage in
+            guard let window = NSApp.keyWindow else { return }
+
+            if let image = newImage {
+                let aspectRatio = CGFloat(image.width) / CGFloat(image.height)
+                let currentHeight = window.contentView?.bounds.height ?? 400
+                let newWidth = currentHeight * aspectRatio
+
+                window.setContentSize(NSSize(width: newWidth, height: currentHeight))
+                window.contentAspectRatio = NSSize(width: aspectRatio, height: 1)
+            } else {
+                window.contentAspectRatio = NSSize.zero
+            }
+        }
     }
 
     @ViewBuilder
-    private var openButton: some View {
+    private var actionButton: some View {
         if viewModel.previewImage == nil {
             Button("Open Image...", action: openFilePicker)
-                .buttonStyle(.bordered)
+                .buttonStyle(.glass)
+                .tint(.accentColor)
+                .controlSize(.extraLarge)
+                .frame(maxWidth: .infinity)
+        } else if viewModel.isConnecting {
+            ProgressView()
+                .controlSize(.regular)
+                .frame(maxWidth: .infinity)
+        } else {
+            Button(action: viewModel.printImage) {
+                Label("Print", systemImage: "printer.fill")
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.glass)
+            .tint(.accentColor)
+            .controlSize(.extraLarge)
+            .disabled(!viewModel.canPrint)
         }
     }
 
@@ -47,6 +67,20 @@ struct ContentView: View {
     }
 
     @ViewBuilder
+    private var dropHint: some View {
+        if viewModel.previewImage == nil {
+            VStack(spacing: 12) {
+                Image(systemName: "photo.on.rectangle.angled")
+                    .font(.system(size: 48, weight: .light))
+                Text("Drop image here")
+                    .font(.title3)
+            }
+            .foregroundStyle(.secondary)
+            .allowsHitTesting(false)
+        }
+    }
+
+    @ViewBuilder
     private var clearButton: some View {
         if viewModel.previewImage != nil {
             Button(action: viewModel.clearImage) {
@@ -56,29 +90,6 @@ struct ContentView: View {
             }
             .buttonStyle(.plain)
             .padding(10)
-        }
-    }
-
-    @ViewBuilder
-    private var printButton: some View {
-        if viewModel.previewImage != nil {
-            if viewModel.isConnecting {
-                ProgressView()
-                    .controlSize(.small)
-                    .frame(width: 44, height: 44)
-                    .background(.regularMaterial, in: Circle())
-                    .padding(10)
-            } else {
-                Button(action: viewModel.printImage) {
-                    Image(systemName: "printer.fill")
-                        .font(.title3)
-                        .frame(width: 44, height: 44)
-                }
-                .buttonStyle(.borderedProminent)
-                .clipShape(Circle())
-                .disabled(!viewModel.canPrint)
-                .padding(10)
-            }
         }
     }
 }

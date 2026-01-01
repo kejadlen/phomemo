@@ -13,6 +13,7 @@ struct ImageWell: NSViewRepresentable {
         imageView.isEditable = true
         imageView.allowsCutCopyPaste = true
         imageView.refusesFirstResponder = true
+        imageView.focusRingType = .none
         imageView.imageScaling = .scaleProportionallyUpOrDown
         imageView.imageFrameStyle = .none
         imageView.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -32,6 +33,16 @@ struct ImageWell: NSViewRepresentable {
 
 class ObservableImageView: NSImageView {
     var onImageChanged: ((NSImage) -> Void)?
+
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        wantsLayer = true
+        layer?.borderWidth = 0
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
     override func performDragOperation(_ sender: any NSDraggingInfo) -> Bool {
         let result = super.performDragOperation(sender)
