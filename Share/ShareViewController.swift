@@ -72,7 +72,7 @@ struct ShareView: View {
     @FocusState private var isPrintFocused: Bool
 
     private var isConnecting: Bool {
-        viewModel.connectionState != .connected || !viewModel.isReady
+        viewModel.isConnecting
     }
 
     var body: some View {

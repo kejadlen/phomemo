@@ -3,15 +3,6 @@ import CoreGraphics
 import UniformTypeIdentifiers
 import AppKit
 
-// MARK: - Connection State
-
-enum ConnectionState: Equatable {
-    case disconnected
-    case scanning
-    case connecting
-    case connected
-}
-
 // MARK: - Image Preview
 
 struct ImagePreview: View {
@@ -138,7 +129,7 @@ struct PhomemoView<DropContent: View>: View {
     }
 
     private var isConnecting: Bool {
-        viewModel.connectionState != .connected || !viewModel.isReady
+        viewModel.isConnecting
     }
 
     var body: some View {
