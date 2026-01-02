@@ -17,7 +17,5 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).ShareViewController</string>
 	</dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Phomemo needs Bluetooth to connect to your thermal printer.</string>
 </dict>
 </plist>

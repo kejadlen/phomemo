@@ -4,7 +4,7 @@ import ImageIO
 
 private let printerWidth = 384 // This is specific to the T02 printer
 
-public struct PhomemoImage {
+public struct FauxmemoImage {
     public let cgImage: CGImage
     public let dithered: CGImage
 

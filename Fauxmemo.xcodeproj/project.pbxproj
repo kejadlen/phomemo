@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE5328E42F009DD500E97BA2 /* PhomemoShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DE5329942F00A38900E97BA2 /* PhomemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */; };
-		DE5329952F00A38900E97BA2 /* PhomemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329862F00A38900E97BA2 /* PhomemoApp.swift */; };
+		DE5328E42F009DD500E97BA2 /* FauxmemoShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DE5328D82F009DD500E97BA2 /* FauxmemoShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DE5329942F00A38900E97BA2 /* FauxmemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* FauxmemoViewModel.swift */; };
+		DE5329952F00A38900E97BA2 /* FauxmemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329862F00A38900E97BA2 /* FauxmemoApp.swift */; };
 		DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329852F00A38900E97BA2 /* ContentView.swift */; };
-		DE5329982F00A38900E97BA2 /* PhomemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoManager.swift */; };
-		DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
+		DE5329982F00A38900E97BA2 /* FauxmemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* FauxmemoManager.swift */; };
+		DE53299A2F00A38900E97BA2 /* FauxmemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* FauxmemoImage.swift */; };
 		DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298F2F00A38900E97BA2 /* ShareViewController.swift */; };
-		DE53299C2F00A39B00E97BA2 /* PhomemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */; };
-		DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* PhomemoImage.swift */; };
-		DE53299E2F00A3A200E97BA2 /* PhomemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* PhomemoManager.swift */; };
-		DE5329A02F00A3B000E97BA2 /* PhomemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */; };
-		DE5329A12F00A3B000E97BA2 /* PhomemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */; };
+		DE53299C2F00A39B00E97BA2 /* FauxmemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329872F00A38900E97BA2 /* FauxmemoViewModel.swift */; };
+		DE53299D2F00A39F00E97BA2 /* FauxmemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5329892F00A38900E97BA2 /* FauxmemoImage.swift */; };
+		DE53299E2F00A3A200E97BA2 /* FauxmemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53298A2F00A38900E97BA2 /* FauxmemoManager.swift */; };
+		DE5329A02F00A3B000E97BA2 /* FauxmemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* FauxmemoView.swift */; };
+		DE5329A12F00A3B000E97BA2 /* FauxmemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53299F2F00A3B000E97BA2 /* FauxmemoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +27,7 @@
 			containerPortal = 5490356D2E90B74100F904F8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DE5328D72F009DD500E97BA2;
-			remoteInfo = PhomemoShare;
+			remoteInfo = FauxmemoShare;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -38,7 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DE5328E42F009DD500E97BA2 /* PhomemoShare.appex in Embed Foundation Extensions */,
+				DE5328E42F009DD500E97BA2 /* FauxmemoShare.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,18 +46,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		549035752E90B74100F904F8 /* Phomemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phomemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhomemoShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		549035752E90B74100F904F8 /* Fauxmemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fauxmemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE5328D82F009DD500E97BA2 /* FauxmemoShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FauxmemoShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5329852F00A38900E97BA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DE5329862F00A38900E97BA2 /* PhomemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoApp.swift; sourceTree = "<group>"; };
-		DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoViewModel.swift; sourceTree = "<group>"; };
-		DE5329892F00A38900E97BA2 /* PhomemoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoImage.swift; sourceTree = "<group>"; };
-		DE53298A2F00A38900E97BA2 /* PhomemoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoManager.swift; sourceTree = "<group>"; };
+		DE5329862F00A38900E97BA2 /* FauxmemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FauxmemoApp.swift; sourceTree = "<group>"; };
+		DE5329872F00A38900E97BA2 /* FauxmemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FauxmemoViewModel.swift; sourceTree = "<group>"; };
+		DE5329892F00A38900E97BA2 /* FauxmemoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FauxmemoImage.swift; sourceTree = "<group>"; };
+		DE53298A2F00A38900E97BA2 /* FauxmemoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FauxmemoManager.swift; sourceTree = "<group>"; };
 		DE53298C2F00A38900E97BA2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		DE53298D2F00A38900E97BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhomemoShare.entitlements; sourceTree = "<group>"; };
+		DE53298E2F00A38900E97BA2 /* FauxmemoShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FauxmemoShare.entitlements; sourceTree = "<group>"; };
 		DE53298F2F00A38900E97BA2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhomemoView.swift; sourceTree = "<group>"; };
+		DE53299F2F00A3B000E97BA2 /* FauxmemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FauxmemoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +91,8 @@
 		549035762E90B74100F904F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				549035752E90B74100F904F8 /* Phomemo.app */,
-				DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */,
+				549035752E90B74100F904F8 /* Fauxmemo.app */,
+				DE5328D82F009DD500E97BA2 /* FauxmemoShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				DE5329852F00A38900E97BA2 /* ContentView.swift */,
-				DE5329862F00A38900E97BA2 /* PhomemoApp.swift */,
+				DE5329862F00A38900E97BA2 /* FauxmemoApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -109,10 +109,10 @@
 		DE53298B2F00A38900E97BA2 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				DE5329892F00A38900E97BA2 /* PhomemoImage.swift */,
-				DE53298A2F00A38900E97BA2 /* PhomemoManager.swift */,
-				DE5329872F00A38900E97BA2 /* PhomemoViewModel.swift */,
-				DE53299F2F00A3B000E97BA2 /* PhomemoView.swift */,
+				DE5329892F00A38900E97BA2 /* FauxmemoImage.swift */,
+				DE53298A2F00A38900E97BA2 /* FauxmemoManager.swift */,
+				DE5329872F00A38900E97BA2 /* FauxmemoViewModel.swift */,
+				DE53299F2F00A3B000E97BA2 /* FauxmemoView.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -122,7 +122,7 @@
 			children = (
 				DE53298C2F00A38900E97BA2 /* icon.icns */,
 				DE53298D2F00A38900E97BA2 /* Info.plist */,
-				DE53298E2F00A38900E97BA2 /* PhomemoShare.entitlements */,
+				DE53298E2F00A38900E97BA2 /* FauxmemoShare.entitlements */,
 				DE53298F2F00A38900E97BA2 /* ShareViewController.swift */,
 			);
 			path = Share;
@@ -131,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		549035742E90B74100F904F8 /* Phomemo */ = {
+		549035742E90B74100F904F8 /* Fauxmemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5490357C2E90B74100F904F8 /* Build configuration list for PBXNativeTarget "Phomemo" */;
+			buildConfigurationList = 5490357C2E90B74100F904F8 /* Build configuration list for PBXNativeTarget "Fauxmemo" */;
 			buildPhases = (
 				549035712E90B74100F904F8 /* Sources */,
 				549035722E90B74100F904F8 /* Frameworks */,
@@ -144,16 +144,16 @@
 			dependencies = (
 				DE5328E32F009DD500E97BA2 /* PBXTargetDependency */,
 			);
-			name = Phomemo;
+			name = Fauxmemo;
 			packageProductDependencies = (
 			);
-			productName = Phomemo;
-			productReference = 549035752E90B74100F904F8 /* Phomemo.app */;
+			productName = Fauxmemo;
+			productReference = 549035752E90B74100F904F8 /* Fauxmemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DE5328D72F009DD500E97BA2 /* PhomemoShare */ = {
+		DE5328D72F009DD500E97BA2 /* FauxmemoShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE5328E92F009DD500E97BA2 /* Build configuration list for PBXNativeTarget "PhomemoShare" */;
+			buildConfigurationList = DE5328E92F009DD500E97BA2 /* Build configuration list for PBXNativeTarget "FauxmemoShare" */;
 			buildPhases = (
 				DE5328D42F009DD500E97BA2 /* Sources */,
 				DE5328D52F009DD500E97BA2 /* Frameworks */,
@@ -163,11 +163,11 @@
 			);
 			dependencies = (
 			);
-			name = PhomemoShare;
+			name = FauxmemoShare;
 			packageProductDependencies = (
 			);
-			productName = PhomemoShare;
-			productReference = DE5328D82F009DD500E97BA2 /* PhomemoShare.appex */;
+			productName = FauxmemoShare;
+			productReference = DE5328D82F009DD500E97BA2 /* FauxmemoShare.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 549035702E90B74100F904F8 /* Build configuration list for PBXProject "Phomemo" */;
+			buildConfigurationList = 549035702E90B74100F904F8 /* Build configuration list for PBXProject "Fauxmemo" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -202,8 +202,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				549035742E90B74100F904F8 /* Phomemo */,
-				DE5328D72F009DD500E97BA2 /* PhomemoShare */,
+				549035742E90B74100F904F8 /* Fauxmemo */,
+				DE5328D72F009DD500E97BA2 /* FauxmemoShare */,
 			);
 		};
 /* End PBXProject section */
@@ -223,12 +223,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE5329942F00A38900E97BA2 /* PhomemoViewModel.swift in Sources */,
-				DE5329952F00A38900E97BA2 /* PhomemoApp.swift in Sources */,
+				DE5329942F00A38900E97BA2 /* FauxmemoViewModel.swift in Sources */,
+				DE5329952F00A38900E97BA2 /* FauxmemoApp.swift in Sources */,
 				DE5329962F00A38900E97BA2 /* ContentView.swift in Sources */,
-				DE5329982F00A38900E97BA2 /* PhomemoManager.swift in Sources */,
-				DE53299A2F00A38900E97BA2 /* PhomemoImage.swift in Sources */,
-				DE5329A02F00A3B000E97BA2 /* PhomemoView.swift in Sources */,
+				DE5329982F00A38900E97BA2 /* FauxmemoManager.swift in Sources */,
+				DE53299A2F00A38900E97BA2 /* FauxmemoImage.swift in Sources */,
+				DE5329A02F00A3B000E97BA2 /* FauxmemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,11 +236,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE53299E2F00A3A200E97BA2 /* PhomemoManager.swift in Sources */,
-				DE53299D2F00A39F00E97BA2 /* PhomemoImage.swift in Sources */,
-				DE53299C2F00A39B00E97BA2 /* PhomemoViewModel.swift in Sources */,
+				DE53299E2F00A3A200E97BA2 /* FauxmemoManager.swift in Sources */,
+				DE53299D2F00A39F00E97BA2 /* FauxmemoImage.swift in Sources */,
+				DE53299C2F00A39B00E97BA2 /* FauxmemoViewModel.swift in Sources */,
 				DE53299B2F00A39500E97BA2 /* ShareViewController.swift in Sources */,
-				DE5329A12F00A3B000E97BA2 /* PhomemoView.swift in Sources */,
+				DE5329A12F00A3B000E97BA2 /* FauxmemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +249,7 @@
 /* Begin PBXTargetDependency section */
 		DE5328E32F009DD500E97BA2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DE5328D72F009DD500E97BA2 /* PhomemoShare */;
+			target = DE5328D72F009DD500E97BA2 /* FauxmemoShare */;
 			targetProxy = DE5328E22F009DD500E97BA2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -391,7 +391,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Phomemo needs Bluetooth to connect to your thermal printer.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fauxmemo needs Bluetooth to connect to your thermal printer.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -399,7 +399,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phomemo.Phomemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fauxmemo.Fauxmemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -420,7 +420,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Phomemo needs Bluetooth to connect to your thermal printer.";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fauxmemo needs Bluetooth to connect to your thermal printer.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -428,7 +428,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phomemo.Phomemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fauxmemo.Fauxmemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -440,7 +440,7 @@
 		DE5328E62F009DD500E97BA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Share/PhomemoShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Share/FauxmemoShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -452,7 +452,8 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Share/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Phomemo;
+				INFOPLIST_KEY_CFBundleDisplayName = Fauxmemo;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fauxmemo needs Bluetooth to connect to your thermal printer.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,7 +462,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phomemo.Phomemo.PhomemoShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fauxmemo.Fauxmemo.FauxmemoShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -475,7 +476,7 @@
 		DE5328E72F009DD500E97BA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Share/PhomemoShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Share/FauxmemoShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -487,7 +488,8 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Share/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Phomemo;
+				INFOPLIST_KEY_CFBundleDisplayName = Fauxmemo;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fauxmemo needs Bluetooth to connect to your thermal printer.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,7 +498,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phomemo.Phomemo.PhomemoShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fauxmemo.Fauxmemo.FauxmemoShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -510,7 +512,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		549035702E90B74100F904F8 /* Build configuration list for PBXProject "Phomemo" */ = {
+		549035702E90B74100F904F8 /* Build configuration list for PBXProject "Fauxmemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5490357A2E90B74100F904F8 /* Debug */,
@@ -519,7 +521,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5490357C2E90B74100F904F8 /* Build configuration list for PBXNativeTarget "Phomemo" */ = {
+		5490357C2E90B74100F904F8 /* Build configuration list for PBXNativeTarget "Fauxmemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5490357D2E90B74100F904F8 /* Debug */,
@@ -528,7 +530,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE5328E92F009DD500E97BA2 /* Build configuration list for PBXNativeTarget "PhomemoShare" */ = {
+		DE5328E92F009DD500E97BA2 /* Build configuration list for PBXNativeTarget "FauxmemoShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE5328E62F009DD500E97BA2 /* Debug */,

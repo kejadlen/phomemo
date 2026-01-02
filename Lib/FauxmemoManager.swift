@@ -20,23 +20,23 @@ enum PrinterState {
 }
 
 struct ReadyPrinter {
-    private let manager: PhomemoManager
+    private let manager: FauxmemoManager
 
-    fileprivate init(manager: PhomemoManager) {
+    fileprivate init(manager: FauxmemoManager) {
         self.manager = manager
     }
 
-    func print(_ image: PhomemoImage) {
+    func print(_ image: FauxmemoImage) {
         manager.printImage(image)
     }
 }
 
-protocol PhomemoManagerDelegate: AnyObject {
-    func manager(_ manager: PhomemoManager, didChangeState state: PrinterState)
+protocol FauxmemoManagerDelegate: AnyObject {
+    func manager(_ manager: FauxmemoManager, didChangeState state: PrinterState)
 }
 
-final class PhomemoManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    private weak var delegate: PhomemoManagerDelegate?
+final class FauxmemoManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+    private weak var delegate: FauxmemoManagerDelegate?
     private var central: CBCentralManager!
     private var targetPeripheral: CBPeripheral?
     private var writeChar: CBCharacteristic?
@@ -49,7 +49,7 @@ final class PhomemoManager: NSObject, CBCentralManagerDelegate, CBPeripheralDele
         didSet { delegate?.manager(self, didChangeState: state) }
     }
 
-    init(delegate: PhomemoManagerDelegate) {
+    init(delegate: FauxmemoManagerDelegate) {
         super.init()
         self.delegate = delegate
         self.central = CBCentralManager(delegate: self, queue: .main)
@@ -64,7 +64,7 @@ final class PhomemoManager: NSObject, CBCentralManagerDelegate, CBPeripheralDele
         }
     }
 
-    fileprivate func printImage(_ image: PhomemoImage) {
+    fileprivate func printImage(_ image: FauxmemoImage) {
         guard let peripheral = targetPeripheral,
               let characteristic = writeChar else { return }
 

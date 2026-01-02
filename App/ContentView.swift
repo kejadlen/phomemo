@@ -3,7 +3,7 @@ import AppKit
 import UniformTypeIdentifiers
 
 struct ContentView: View {
-    @Bindable var viewModel: PhomemoViewModel
+    @Bindable var viewModel: FauxmemoViewModel
 
     var body: some View {
         ImageWell(image: viewModel.previewImage, onImageDropped: viewModel.loadImage)
@@ -95,5 +95,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(viewModel: PhomemoViewModel())
+    ContentView(viewModel: FauxmemoViewModel())
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "2610"
-   version = "1.7">
+   wasCreatedForAppExtension = "YES"
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -15,10 +16,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DE5328D72F009DD500E97BA2"
+               BuildableName = "FauxmemoShare.appex"
+               BlueprintName = "FauxmemoShare"
+               ReferencedContainer = "container:Fauxmemo.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "549035742E90B74100F904F8"
-               BuildableName = "Phomemo.app"
-               BlueprintName = "Phomemo"
-               ReferencedContainer = "container:Phomemo.xcodeproj">
+               BuildableName = "Fauxmemo.app"
+               BlueprintName = "Fauxmemo"
+               ReferencedContainer = "container:Fauxmemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,22 +47,24 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "549035742E90B74100F904F8"
-            BuildableName = "Phomemo.app"
-            BlueprintName = "Phomemo"
-            ReferencedContainer = "container:Phomemo.xcodeproj">
+            BuildableName = "Fauxmemo.app"
+            BlueprintName = "Fauxmemo"
+            ReferencedContainer = "container:Fauxmemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -56,15 +73,17 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
+      debugDocumentVersioning = "YES"
+      askForAppToLaunch = "Yes"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "549035742E90B74100F904F8"
-            BuildableName = "Phomemo.app"
-            BlueprintName = "Phomemo"
-            ReferencedContainer = "container:Phomemo.xcodeproj">
+            BuildableName = "Fauxmemo.app"
+            BlueprintName = "Fauxmemo"
+            ReferencedContainer = "container:Fauxmemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

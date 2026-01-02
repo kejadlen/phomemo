@@ -1,8 +1,8 @@
 import SwiftUI
 
 @main
-struct PhomemoApp: App {
-    @State private var viewModel = PhomemoViewModel()
+struct FauxmemoApp: App {
+    @State private var viewModel = FauxmemoViewModel()
 
     var body: some Scene {
         WindowGroup {

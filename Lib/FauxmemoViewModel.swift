@@ -4,10 +4,10 @@ import UniformTypeIdentifiers
 import AppKit
 
 @Observable
-final class PhomemoViewModel: PhomemoManagerDelegate {
+final class FauxmemoViewModel: FauxmemoManagerDelegate {
     private(set) var state: PrinterState = .disconnected
-    private var phomemoImage: PhomemoImage?
-    private var manager: PhomemoManager!
+    private var fauxmemoImage: FauxmemoImage?
+    private var manager: FauxmemoManager!
 
     private(set) var printCompleted: Bool = false
 
@@ -26,28 +26,28 @@ final class PhomemoViewModel: PhomemoManagerDelegate {
     }
 
     var previewImage: CGImage? {
-        phomemoImage?.dithered
+        fauxmemoImage?.dithered
     }
 
     init() {
-        manager = PhomemoManager(delegate: self)
+        manager = FauxmemoManager(delegate: self)
     }
 
     func loadImage(from url: URL) {
-        guard let image = PhomemoImage(url: url) else {
+        guard let image = FauxmemoImage(url: url) else {
             return
         }
 
-        phomemoImage = image
+        fauxmemoImage = image
     }
 
     func loadImage(from nsImage: NSImage) {
         guard let cgImage = nsImage.cgImage(forProposedRect: nil, context: nil, hints: nil),
-              let image = PhomemoImage(cgImage: cgImage) else {
+              let image = FauxmemoImage(cgImage: cgImage) else {
             return
         }
 
-        phomemoImage = image
+        fauxmemoImage = image
     }
 
     func loadImage(from itemProviders: [NSItemProvider]) {
@@ -78,17 +78,17 @@ final class PhomemoViewModel: PhomemoManagerDelegate {
     }
 
     func printImage() {
-        guard case .ready(let printer) = state, let image = phomemoImage else { return }
+        guard case .ready(let printer) = state, let image = fauxmemoImage else { return }
         printer.print(image)
     }
 
     func clearImage() {
-        phomemoImage = nil
+        fauxmemoImage = nil
     }
 
-    // MARK: - PhomemoManagerDelegate
+    // MARK: - FauxmemoManagerDelegate
 
-    func manager(_ manager: PhomemoManager, didChangeState state: PrinterState) {
+    func manager(_ manager: FauxmemoManager, didChangeState state: PrinterState) {
         // Detect print completion: .printing → .ready
         if case .printing = self.state, case .ready = state {
             printCompleted = true

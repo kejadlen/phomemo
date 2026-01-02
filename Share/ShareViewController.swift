@@ -2,7 +2,7 @@ import SwiftUI
 import AppKit
 
 class ShareViewController: NSViewController {
-    private var viewModel = PhomemoViewModel()
+    private var viewModel = FauxmemoViewModel()
 
     override var nibName: NSNib.Name? {
         nil
@@ -65,7 +65,7 @@ class ShareViewController: NSViewController {
 // MARK: - SwiftUI View
 
 struct ShareView: View {
-    @Bindable var viewModel: PhomemoViewModel
+    @Bindable var viewModel: FauxmemoViewModel
     let onCancel: () -> Void
     let onComplete: () -> Void
 
@@ -78,7 +78,7 @@ struct ShareView: View {
     var body: some View {
         VStack(spacing: 0) {
             // Header
-            Text("Phomemo")
+            Text("Fauxmemo")
                 .font(.headline)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
